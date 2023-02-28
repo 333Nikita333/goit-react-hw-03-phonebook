@@ -7,7 +7,7 @@ const ContactsList = ({ contacts, filter, onDeleteContact }) => {
     <List>
       {contacts
         ?.filter(({ name }) =>
-          name.toLowerCase().includes(filter.toLowerCase())
+          name.toLowerCase().includes(filter?.toLowerCase())
         )
         .map(({ id, name, number }) => (
           <ContactListItem
