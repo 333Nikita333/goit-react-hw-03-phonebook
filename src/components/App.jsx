@@ -16,14 +16,14 @@ export class App extends Component {
   componentDidMount = () => {
     const contacts = loadStorage(LOCLAL_STORAGE_KEY);
 
-    if (contacts !== null) {
-      this.setState({ contacts });
+    if (contacts === null) {
+      this.setState({ contacts: [] });
       return;
     }
-    this.setState({ contacts: [] });
+    this.setState({ contacts });
   };
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     const nextContacts = this.state.contacts;
     const prevContacts = prevState.contacts;
 
