@@ -81,7 +81,6 @@ export class App extends Component {
           filter={filter}
           onDeleteContact={this.onDeleteContact}
         />
-        {contacts.length === 0 && <p>Contacts list is empty</p>}
       </AppBox>
     );
   }
