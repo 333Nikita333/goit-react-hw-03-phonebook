@@ -75,12 +75,18 @@ export class App extends Component {
         <Form onSubmit={this.handleSubmit} />
 
         <h2>Contacts</h2>
-        <Filter onChange={this.handleChange} value={filter} />
-        <ContactsList
-          contacts={contacts}
-          filter={filter}
-          onDeleteContact={this.onDeleteContact}
-        />
+        {contacts.length > 0 ? (
+          <>
+            <Filter onChange={this.handleChange} value={filter} />
+            <ContactsList
+              contacts={contacts}
+              filter={filter}
+              onDeleteContact={this.onDeleteContact}
+            />
+          </>
+        ) : (
+          <p>Contacts list is empty</p>
+        )}
       </AppBox>
     );
   }
