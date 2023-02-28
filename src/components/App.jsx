@@ -16,7 +16,7 @@ export class App extends Component {
   componentDidMount = () => {
     const contacts = loadStorage(LOCLAL_STORAGE_KEY);
 
-    if (contacts !== null) {
+    if (contacts) {
       this.setState({ contacts });
       return;
     }
@@ -75,12 +75,18 @@ export class App extends Component {
         <Form onSubmit={this.handleSubmit} />
 
         <h2>Contacts</h2>
-        <Filter onChange={this.handleChange} value={filter} />
-        <ContactsList
-          contacts={contacts}
-          filter={filter}
-          onDeleteContact={this.onDeleteContact}
-        />
+        {contacts !== undefined && contacts.length > 0 ? (
+          <>
+            <Filter onChange={this.handleChange} value={filter} />
+            <ContactsList
+              contacts={contacts}
+              filter={filter}
+              onDeleteContact={this.onDeleteContact}
+            />
+          </>
+        ) : (
+          <p>Contacts list is empty</p>
+        )}
       </AppBox>
     );
   }

@@ -3,23 +3,27 @@ import ContactListItem from 'components/ContactListItem';
 import { List } from './ContactsList.styled';
 
 const ContactsList = ({ contacts, filter, onDeleteContact }) => {
-  return (
-    <List>
-      {contacts
-        ?.filter(({ name }) =>
-          name.toLowerCase().includes(filter?.toLowerCase())
-        )
-        .map(({ id, name, number }) => (
-          <ContactListItem
-            key={id}
-            id={id}
-            name={name}
-            number={number}
-            onDeleteContact={onDeleteContact}
-          />
-        ))}
-    </List>
-  );
+  if (contacts.length > 0) {
+    return (
+      <List>
+        {contacts
+          .filter(({ name }) =>
+            name.toLowerCase().includes(filter.toLowerCase())
+          )
+          .map(({ id, name, number }) => (
+            <ContactListItem
+              key={id}
+              id={id}
+              name={name}
+              number={number}
+              onDeleteContact={onDeleteContact}
+            />
+          ))}
+      </List>
+    );
+  } else {
+    <p>Contacts list is empty</p>;
+  }
 };
 
 ContactsList.propTypes = {
