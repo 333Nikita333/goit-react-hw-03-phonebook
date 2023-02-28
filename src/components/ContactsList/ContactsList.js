@@ -3,7 +3,7 @@ import ContactListItem from 'components/ContactListItem';
 import { List } from './ContactsList.styled';
 
 const ContactsList = ({ contacts, filter, onDeleteContact }) => {
-  return (
+  return contacts.length > 0 ? (
     <List>
       {contacts
         .filter(({ name }) => name.toLowerCase().includes(filter.toLowerCase()))
@@ -17,6 +17,8 @@ const ContactsList = ({ contacts, filter, onDeleteContact }) => {
           />
         ))}
     </List>
+  ) : (
+    <p>Contact list is empty</p>
   );
 };
 
